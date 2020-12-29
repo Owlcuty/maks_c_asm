@@ -18,20 +18,28 @@ int main()
 {
 	size_t size = 10;
 	void **array = calloc(size, sizeof(void*));
+	if (array == NULL)
+	{
+		return -1;
+	}
 
 	voidarr_t *arr = (voidarr_t*)calloc(1, sizeof(voidarr_t));
+	if (arr == NULL)
+	{
+		return -1;
+	}
 	va_init(arr, array, size);
 
 	void *getted = AR_get(arr->arr, arr->size, 2);
-		size_t tmp = AR_push_back(arr->arr, &arr->size, arr->capacity, getted);
-		if (tmp == 0)
+	size_t tmp = AR_push_back(arr->arr, &arr->size, arr->capacity, getted);
+	if (tmp == 0)
 	{
 		return -1;
 	}
 	arr->capacity = tmp;
 	
 	tmp = AR_del(arr->arr, &arr->size, arr->capacity, 3);
-		if (tmp == 0)
+	if (tmp == 0)
 	{
 		return -1;
 	}
@@ -44,6 +52,7 @@ int main()
 	}
 	arr->capacity = tmp;
 
+	free(arr->arr);
 	free(arr);
 	
 	return 0;
