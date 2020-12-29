@@ -1,6 +1,6 @@
 #include "lb61lib.h"
 
-size_t parse_argv(int argc, char **argv)
+size_t parse_argv_width(int argc, char **argv)
 {
 	if (argc < 2)
 	{
